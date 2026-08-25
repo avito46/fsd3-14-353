@@ -2,10 +2,10 @@
   "name": "lab3",
   "version": "1.0.0",
   "description": "HTTP->Hyper Text Transfer Protocol\r html->hyper text markup language\r css->cascading style sheet\r npm->node package management",
-  "main": "app.js.js",
+  "main": "app.js",
   "scripts": {
     "start":"node app.js",
-    "dev":"nodemon prg3.js"
+    "dev":"nodemon prg4.js"
   },
   "keywords": [],
   "author": "",
