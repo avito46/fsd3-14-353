@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AirTag — Apple</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+                         "SF Pro Text", Arial, sans-serif;
+            color: #1d1d1f;
+            background: #fff;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            height: 52px;
+            background: rgba(0, 0, 0, 0.94);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .apple-logo {
+            font-size: 24px;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #d2d2d7;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        .buy-nav {
+            background: #0071e3;
+            padding: 7px 16px;
+            border-radius: 20px;
+            color: white !important;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 92vh;
+            background: #f5f5f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1100px;
+        }
+
+        .hero h1 {
+            font-size: clamp(60px, 9vw, 105px);
+            letter-spacing: -5px;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            font-size: clamp(26px, 4vw, 45px);
+            font-weight: 500;
+            letter-spacing: -1px;
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            color: #6e6e73;
+            font-size: 21px;
+            line-height: 1.5;
+        }
+
+        .buttons {
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 13px 24px;
+            border-radius: 30px;
+            margin: 5px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: #0071e3;
+            color: white;
+        }
+
+        .primary:hover {
+            background: #0077ed;
+            transform: scale(1.04);
+        }
+
+        .secondary {
+            color: #0071e3;
+            border: 1px solid #0071e3;
+        }
+
+        .secondary:hover {
+            background: #0071e3;
+            color: white;
+        }
+
+        /* HERO IMAGE */
+
+        .hero-image {
+            display: block;
+            width: min(620px, 90vw);
+            max-height: 480px;
+            object-fit: contain;
+            margin: 55px auto 0;
+            filter: drop-shadow(0 30px 35px rgba(0, 0, 0, 0.18));
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image:hover {
+            transform: scale(1.04);
+        }
+
+        /* ================= FEATURES ================= */
+
+        .feature-section {
+            padding: 120px 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: clamp(45px, 6vw, 70px);
+            letter-spacing: -3px;
+            line-height: 1.05;
+        }
+
+        .section-subtitle {
+            max-width: 720px;
+            margin: 25px auto 0;
+            color: #6e6e73;
+            font-size: 20px;
+            line-height: 1.5;
+        }
+
+        .feature-grid {
+            max-width: 1100px;
+            margin: 70px auto 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: #f5f5f7;
+            border-radius: 28px;
+            padding: 45px 30px;
+            min-height: 290px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: 0.4s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.09);
+        }
+
+        .feature-icon {
+            font-size: 52px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #6e6e73;
+            line-height: 1.5;
+        }
+
+        /* ================= FIND MY ================= */
+
+        .find-section {
+            background: #000;
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .find-section h2 {
+            font-size: clamp(50px, 7vw, 80px);
+            letter-spacing: -4px;
+            line-height: 1;
+        }
+
+        .find-section p {
+            max-width: 700px;
+            margin: 30px auto;
+            color: #a1a1a6;
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        .find-image {
+            display: block;
+            width: min(900px, 95vw);
+            max-height: 600px;
+            object-fit: contain;
+            margin: 60px auto 0;
+            border-radius: 30px;
+        }
+
+        /* ================= PRODUCT ================= */
+
+        .product {
+            padding: 120px 20px;
+            text-align: center;
+            background: #f5f5f7;
+        }
+
+        .product-card {
+            max-width: 950px;
+            margin: 60px auto 0;
+            background: white;
+            border-radius: 35px;
+            padding: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 60px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+
+        .product-card img {
+            width: 380px;
+            max-width: 90%;
+            max-height: 380px;
+            object-fit: contain;
+        }
+
+        .product-info {
+            text-align: left;
+        }
+
+        .product-info h3 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 28px;
+            font-weight: 600;
+            margin: 20px 0;
+        }
+
+        .product-info ul {
+            list-style: none;
+            color: #6e6e73;
+            line-height: 2;
+        }
+
+        .product-info li::before {
+            content: "✓ ";
+            color: #0071e3;
+            font-weight: bold;
+        }
+
+        /* ================= SPECS ================= */
+
+        .specs {
+            padding: 120px 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 50px;
+        }
+
+        .spec-table tr {
+            border-bottom: 1px solid #d2d2d7;
+        }
+
+        .spec-table td {
+            padding: 22px 10px;
+            font-size: 17px;
+        }
+
+        .spec-table td:first-child {
+            font-weight: 600;
+            width: 40%;
+        }
+
+        .spec-table td:last-child {
+            color: #6e6e73;
+        }
+
+        /* ================= CTA ================= */
+
+        .cta {
+            background: #f5f5f7;
+            text-align: center;
+            padding: 120px 20px;
+        }
+
+        .cta h2 {
+            font-size: clamp(45px, 6vw, 70px);
+            letter-spacing: -3px;
+        }
+
+        .cta p {
+            color: #6e6e73;
+            font-size: 20px;
+            margin: 25px 0;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #f5f5f7;
+            border-top: 1px solid #d2d2d7;
+            padding: 40px 20px;
+            text-align: center;
+            color: #6e6e73;
+            font-size: 13px;
+        }
+
+        footer a {
+            color: #424245;
+            text-decoration: none;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 800px) {
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .nav-links a:not(.buy-nav) {
+                display: none;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-card {
+                flex-direction: column;
+                padding: 40px 25px;
+            }
+
+            .product-info {
+                text-align: center;
+            }
+
+            .product-info ul {
+                display: inline-block;
+                text-align: left;
+            }
+
+            .hero h1 {
+                letter-spacing: -3px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+    <div class="nav-container">
+
+        <div class="apple-logo">●</div>
+
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#findmy">Find My</a>
+            <a href="#specs">Tech Specs</a>
+            <a href="#buy" class="buy-nav">Buy</a>
+        </div>
+
+    </div>
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>AirTag</h1>
+
+        <h2>What was lost is now sound.</h2>
+
+        <p>
+            With a speaker that's 50% louder and up to 1.5x greater
+            Precision Finding range, the next generation of AirTag
+            makes it easier than ever to keep track of what matters.
+        </p>
+
+        <div class="buttons">
+
+            <a href="#buy" class="btn primary">
+                Buy AirTag
+            </a>
+
+            <a href="#features" class="btn secondary">
+                Learn more
+            </a>
+
+        </div>
+
+        <!-- REAL APPLE IMAGE -->
+        <img
+            class="hero-image"
+            src="https://www.apple.com/newsroom/images/2026/01/apple-introduces-new-airtag-with-expanded-range-and-improved-findability/article/Apple-AirTag-FineWoven-Key-Ring_inline.jpg.large.jpg"
+            alt="Apple AirTag with FineWoven Key Ring"
+        >
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="feature-section" id="features">
+
+    <h2 class="section-title">
+        Find it.<br>
+        Before you lose it.
+    </h2>
+
+    <p class="section-subtitle">
+        AirTag makes it easy to keep track of your everyday
+        belongings using the Find My app.
+    </p>
+
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <div class="feature-icon">📍</div>
+
+            <h3>Precision Finding</h3>
+
+            <p>
+                Your iPhone can guide you toward your AirTag
+                using distance and direction information.
+            </p>
+        </div>
+
+
+        <div class="feature-card">
+            <div class="feature-icon">🔊</div>
+
+            <h3>50% Louder</h3>
+
+            <p>
+                The new AirTag has its loudest speaker yet,
+                making it easier to hear when nearby.
+            </p>
+        </div>
+
+
+        <div class="feature-card">
+            <div class="feature-icon">🌐</div>
+
+            <h3>Find My Network</h3>
+
+            <p>
+                The Find My network can help locate your
+                AirTag even when it is far away.
+            </p>
+        </div>
+
+
+        <div class="feature-card">
+            <div class="feature-icon">🔋</div>
+
+            <h3>Long Battery Life</h3>
+
+            <p>
+                AirTag works for more than a year with a
+                replaceable CR2032 battery.
+            </p>
+        </div>
+
+
+        <div class="feature-card">
+            <div class="feature-icon">💧</div>
+
+            <h3>IP67 Rated</h3>
+
+            <p>
+                AirTag is splash, water and dust resistant
+                with an IP67 rating.
+            </p>
+        </div>
+
+
+        <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+
+            <h3>Privacy First</h3>
+
+            <p>
+                Your location data is encrypted and designed
+                to protect your privacy.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FIND MY ================= -->
+
+<section class="find-section" id="findmy">
+
+    <h2>
+        Ping it.<br>
+        Find it.
+    </h2>
+
+    <p>
+        Misplaced something? Open the Find My app and locate
+        your AirTag. If it's nearby, play a sound and follow
+        Precision Finding to it.
+    </p>
+
+    <!-- REAL APPLE FIND MY IMAGE -->
+    <img
+        class="find-image"
+        src="https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/airtag-findmy-202601_GEO_IN?.v=dnVWM1JCbmV1Vlk2ZVRFQmNEZW5LbFJyUkttRHJvL3k3R0lLMjcxb05TVU5qemhMTzRjclpyVlJBcHZKb28wK0JkRlpCNVhYU3AwTldRQldlSnpRa0ptOVZFcDVLSStEbjdWVXBCSllpalE&fmt=jpeg&hei=890&qlt=90&wid=678"
+        alt="AirTag with Find My app on iPhone"
+    >
+
+</section>
+
+
+<!-- ================= PRODUCT ================= -->
+
+<section class="product" id="buy">
+
+    <h2 class="section-title">
+        Get your AirTag.
+    </h2>
+
+    <p class="section-subtitle">
+        Personalise your AirTag with free engraving when you
+        buy directly from Apple.
+    </p>
+
+
+    <div class="product-card">
+
+        <!-- REAL APPLE IMAGE -->
+        <img
+            src="https://www.apple.com/newsroom/images/2026/01/apple-introduces-new-airtag-with-expanded-range-and-improved-findability/article/Apple-AirTag-FineWoven-Key-Ring_inline.jpg.large.jpg"
+            alt="Apple AirTag"
+        >
+
+
+        <div class="product-info">
+
+            <h3>AirTag</h3>
+
+            <div class="price">
+                ₹3,790
+            </div>
+
+            <ul>
+                <li>1 AirTag</li>
+                <li>Free engraving</li>
+                <li>Find My support</li>
+                <li>Precision Finding</li>
+                <li>Replaceable CR2032 battery</li>
+            </ul>
+
+            <br>
+
+            <a
+                href="https://www.apple.com/in/shop/buy-airtag/airtag"
+                target="_blank"
+                class="btn primary"
+            >
+                Buy from Apple
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= TECH SPECS ================= -->
+
+<section class="specs" id="specs">
+
+    <h2 class="section-title">
+        Tech specs.
+    </h2>
+
+    <table class="spec-table">
+
+        <tr>
+            <td>Diameter</td>
+            <td>31.9 mm</td>
+        </tr>
+
+        <tr>
+            <td>Height</td>
+            <td>8.0 mm</td>
+        </tr>
+
+        <tr>
+            <td>Weight</td>
+            <td>11.8 grams</td>
+        </tr>
+
+        <tr>
+            <td>Water Resistance</td>
+            <td>IP67 — up to 1 metre for 30 minutes</td>
+        </tr>
+
+        <tr>
+            <td>Connectivity</td>
+            <td>
+                Bluetooth, NFC, second-generation Ultra Wideband
+            </td>
+        </tr>
+
+        <tr>
+            <td>Battery</td>
+            <td>
+                Replaceable CR2032 coin cell
+            </td>
+        </tr>
+
+        <tr>
+            <td>Precision Finding</td>
+            <td>
+                Up to 1.5× greater range
+            </td>
+        </tr>
+
+        <tr>
+            <td>Compatibility</td>
+            <td>
+                iPhone with iOS 26 or later
+            </td>
+        </tr>
+
+    </table>
+
+</section>
+
+
+<!-- ================= FINAL CTA ================= -->
+
+<section class="cta">
+
+    <h2>
+        Keep track.<br>
+        Keep moving.
+    </h2>
+
+    <p>
+        AirTag makes finding your things easier.
+    </p>
+
+    <a
+        href="https://www.apple.com/in/shop/buy-airtag/airtag"
+        target="_blank"
+        class="btn primary"
+    >
+        Buy AirTag
+    </a>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        AirTag is designed by Apple.
+    </p>
+
+    <br>
+
+    <p>
+        Product information based on Apple's current AirTag specifications.
+    </p>
+
+    <br>
+
+    <a
+        href="https://www.apple.com/in/airtag/"
+        target="_blank"
+    >
+        View AirTag on Apple.com
+    </a>
+
+</footer>
+
+</body>
+</html>
