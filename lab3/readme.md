@@ -11,10 +11,14 @@ npm->node package management
 STATUS               CODES             
 200                   OK
 201                   CREATED
+204                   NO CONTENT
 400                   BAD REQUEST
 401                   UNAUTHORIZED
 403                   FORBIDDEN
 404                   NOT FOUND  
+503                   SERVICE UNAVAILABLE 
+505                   INTERNAL SERVER ERROR
+
 
 #API->
 Any API can be of 4 types->
@@ -41,3 +45,24 @@ It is **not a function** and it does not ask the user to store a file.
 
 ```js
 res.setHeader("Content-Type", "text/html")
+
+#Server can send followinf types of data
+1. html content
+2. html files
+3. json data
+4. plain text
+5. css
+6. jss
+7. file
+
+## Server can set Header to send data
+1. res.statusCode()
+2. res.writeHead()
+
+#request methods
+1. get
+2. post
+3. put/patch
+4. delete
+
+#Routes
