@@ -4,8 +4,8 @@
   "description": "HTTP->Hyper Text Transfer Protocol\r html->hyper text markup language\r css->cascading style sheet\r npm->node package management",
   "main": "app.js",
   "scripts": {
-    "start":"node app.js",
-    "dev":"nodemon prg11.js"
+    "start":"node teams.js",
+    "dev":"nodemon app.js"
   },
   "keywords": [],
   "author": "",
