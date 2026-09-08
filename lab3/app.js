@@ -1,6 +1,6 @@
 import http from 'http'
 import { parse as parseUrl } from 'url'
-import { getAllTeams } from './teams.js'
+import { getAllTeams,addTeam } from './teams.js'
 
 const port = 5000
 
@@ -21,6 +21,7 @@ const parseJSONBody = (req) => {
 
         req.on("data", (chunk) => {
             body += chunk.toString()
+
         })
 
         req.on("end", () => {
@@ -37,7 +38,7 @@ const parseJSONBody = (req) => {
     })
 }
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async(req, res) => {
 
     const { pathname, query } = parseUrl(req.url, true)
 
@@ -54,6 +55,15 @@ const server = http.createServer((req, res) => {
         const { total } = query
 
         return sendJSON(res, 200, teams)
+    }
+    else if(pathname === "api/v1/teams" && method==="POST")
+    {
+      const {tname,tl,members}=await parseJSONBody(req)
+      if(!tname || !tl ||! !members)
+      {
+        return sendJSON(400,{error:"tname ,tl or member not defined"})
+        
+      }
     }
 
     return sendJSON(res, 404, {
