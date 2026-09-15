@@ -34,7 +34,7 @@ orderObj.on("error", (err) => {
   console.log(`Error in order ${err}`);
 });
 
-OrderObj.placeOrder({
+orderObj.placeOrder({
   id: "ORD10001",
   customerName: "Ramesh Solanki",
   email: "ramesh.sol27@gmail.com",

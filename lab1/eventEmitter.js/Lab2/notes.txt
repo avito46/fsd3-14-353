@@ -1,2 +1,0 @@
-FS is easy in JS
-it can add,read and update content
