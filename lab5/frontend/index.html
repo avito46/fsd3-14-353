@@ -1,0 +1,444 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rockstar Games</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* NAVBAR */
+        nav {
+            height: 75px;
+            background: #050505;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 45px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid #222;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+
+        .logo span {
+            color: #f5c400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover {
+            color: #f5c400;
+        }
+
+        .menu {
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        /* HERO */
+        .hero {
+            height: 100vh;
+            margin-top: 75px;
+            background:
+                linear-gradient(to bottom, rgba(0,0,0,0.15), #000),
+                url("https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=2000&q=80")
+                center/cover;
+            display: flex;
+            align-items: flex-end;
+            padding: 70px;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero-content h1 {
+            font-size: 70px;
+            line-height: 0.95;
+            text-transform: uppercase;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #ddd;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #fff;
+            color: #000;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background: #f5c400;
+        }
+
+        /* FEATURED */
+        .section {
+            padding: 80px 50px;
+        }
+
+        .section-title {
+            font-size: 38px;
+            text-transform: uppercase;
+            margin-bottom: 35px;
+            font-weight: 900;
+        }
+
+        .games {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .game {
+            background: #111;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .game img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s;
+        }
+
+        .game:hover img {
+            transform: scale(1.05);
+        }
+
+        .game-info {
+            padding: 20px;
+        }
+
+        .game-info h2 {
+            font-size: 23px;
+            margin-bottom: 8px;
+        }
+
+        .game-info p {
+            color: #999;
+            font-size: 14px;
+        }
+
+        /* NEWS */
+        .news {
+            background: #0a0a0a;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .news-card {
+            background: #151515;
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: 25px;
+        }
+
+        .news-content small {
+            color: #aaa;
+            text-transform: uppercase;
+        }
+
+        .news-content h2 {
+            font-size: 25px;
+            margin: 12px 0;
+        }
+
+        .news-content p {
+            color: #aaa;
+            line-height: 1.5;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 50px;
+            background: #050505;
+            border-top: 1px solid #222;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            margin-top: 40px;
+            color: #555;
+            font-size: 12px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .games {
+                grid-template-columns: 1fr;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 50px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 0 20px;
+            }
+
+            .hero {
+                padding: 30px;
+            }
+
+            .section {
+                padding: 60px 25px;
+            }
+
+            .hero-content h1 {
+                font-size: 40px;
+            }
+
+            .footer-top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">
+            ROCK<span>★</span>STAR
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#">Games</a></li>
+            <li><a href="#">Newswire</a></li>
+            <li><a href="#">Videos</a></li>
+            <li><a href="#">Downloads</a></li>
+            <li><a href="#">Support</a></li>
+        </ul>
+
+        <div class="menu">☰</div>
+    </nav>
+
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to<br>Rockstar Games</h1>
+
+            <p>
+                Explore legendary worlds, unforgettable characters
+                and groundbreaking games from Rockstar Games.
+            </p>
+
+            <a href="#" class="btn">Explore Games</a>
+        </div>
+    </section>
+
+
+    <!-- FEATURED GAMES -->
+    <section class="section">
+
+        <h2 class="section-title">Featured Games</h2>
+
+        <div class="games">
+
+            <div class="game">
+                <img
+                    src="https://images.unsplash.com/photo-1605899435973-ca2d1a8861cf?auto=format&fit=crop&w=1000&q=80"
+                    alt="Open world game">
+                <div class="game-info">
+                    <h2>Grand Theft Auto</h2>
+                    <p>Explore the city. Live the life. Make your mark.</p>
+                </div>
+            </div>
+
+            <div class="game">
+                <img
+                    src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1000&q=80"
+                    alt="Gaming">
+                <div class="game-info">
+                    <h2>Red Dead Redemption</h2>
+                    <p>Experience an unforgettable western adventure.</p>
+                </div>
+            </div>
+
+            <div class="game">
+                <img
+                    src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1000&q=80"
+                    alt="Video game">
+                <div class="game-info">
+                    <h2>Rockstar Online</h2>
+                    <p>Join millions of players in an ever-changing world.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- NEWSWIRE -->
+    <section class="section news">
+
+        <h2 class="section-title">Newswire</h2>
+
+        <div class="news-grid">
+
+            <div class="news-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=1200&q=80"
+                    alt="Gaming news">
+
+                <div class="news-content">
+
+                    <small>News</small>
+
+                    <h2>Discover the latest from Rockstar Games</h2>
+
+                    <p>
+                        Get the latest announcements, updates,
+                        trailers and information from Rockstar Games.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="news-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1511882150382-421056c89033?auto=format&fit=crop&w=1200&q=80"
+                    alt="Video game">
+
+                <div class="news-content">
+
+                    <small>Featured</small>
+
+                    <h2>Explore New Worlds</h2>
+
+                    <p>
+                        Step into massive open worlds filled with
+                        stories, characters and unforgettable moments.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-top">
+
+            <div class="logo">
+                ROCK<span>★</span>STAR
+            </div>
+
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Cookies</a>
+                <a href="#">Careers</a>
+                <a href="#">Contact</a>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Rockstar Games. All rights reserved.
+        </div>
+
+    </footer>
+
+</body>
+</html>
+
