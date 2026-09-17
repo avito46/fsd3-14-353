@@ -1,20 +1,40 @@
 import http from "http";
-import { getAllTeams, addTeam, getTeamById, deleteTeam, updateTeamById } from "./teams.js";
+import {
+  getAllTeams,
+  addTeam,
+  getTeamById,
+  deleteTeam,
+  updateTeamById,
+} from "./teams.js";
 import { parse as parseUrl } from "url";
 
 const PORT = 5000;
 
 const sendJson = (res, statusCode, data, keyword, msg) => {
-  res.writeHead(statusCode, { "content-type": "application/json" });
-  res.end(data === "undefined" ? "" : JSON.stringify({ [keyword]: msg, data }));
+  res.writeHead(statusCode, {
+    "content-type": "application/json",
+  });
+
+  if (keyword && msg) {
+    res.end(
+      JSON.stringify({
+        [keyword]: msg,
+        data,
+      })
+    );
+  } else {
+    res.end(JSON.stringify(data));
+  }
 };
 
 const parseJSONBody = (req) => {
   return new Promise((resolve, reject) => {
     let body = "";
+
     req.on("data", (chunk) => {
       body += chunk.toString();
     });
+
     req.on("end", () => {
       try {
         resolve(body ? JSON.parse(body) : {});
@@ -22,6 +42,7 @@ const parseJSONBody = (req) => {
         reject(error);
       }
     });
+
     req.on("error", reject);
   });
 };
@@ -29,79 +50,147 @@ const parseJSONBody = (req) => {
 const server = http.createServer(async (req, res) => {
   const { pathname, query } = parseUrl(req.url, true);
   const { method } = req;
+
   console.log("pathname:", pathname);
   console.log("query:", query);
   console.log("Method:", method);
 
+  // GET ALL TEAMS
   if (pathname === "/api/v1/teams" && method === "GET") {
+    const teams = getAllTeams();
 
-    let teams = getAllTeams();
     return sendJson(res, 200, teams, "count", teams.length);
+  }
 
-  } 
-  
-  else if (pathname === "/api/v1/teams" && method == "POST") {
+  // POST - ADD TEAM
+  else if (pathname === "/api/v1/teams" && method === "POST") {
+    let body;
 
-    const { tname, tl, members } = await parseJSONBody(req);
-    if (!tname || !tl || !members)
+    try {
+      body = await parseJSONBody(req);
+    } catch (error) {
+      return sendJson(res, 400, {
+        error: "Invalid JSON body",
+      });
+    }
+
+    const { tname, tl, members } = body;
+
+    if (!tname || !tl || !members) {
       return sendJson(res, 400, {
         error: "Team Name, Team Leader, or Members not defined",
       });
-    const team = addTeam({ tname, tl, members });
+    }
 
-    return sendJson(res, 201, team, "Message", "Team registered successfully");
+    const team = addTeam({
+      tname,
+      tl,
+      members,
+    });
 
-  } 
-  else if (pathname.startsWith("/api/v1/teams/") && method == "PUT") {
-    const id=Number(pathname.split("/").pop())
-    const oldTeam=getTeamById(id)
-if(!oldTeam)
-{
-  return sendJson(res,400,{error:`Team with id: ${id} not found`})
-}
+    return sendJson(
+      res,
+      201,
+      team,
+      "Message",
+      "Team registered successfully"
+    );
+  }
 
-    const { tname, tl, members } = await parseJSONBody(req);
-    if (!tname || !tl || !members)
-      return sendJson(res, 400, {
-        error: "Team Name, Team Leader, or Members not defined",
-      });
-    const updatedTeam = updateTeamById(id,{ tname, tl, members });
-
-    return sendJson(res, 200, updatedTeam, "Message", "Team updated successfully");
-
-  } 
-  
-  
-  else if (pathname.startsWith("/api/v1/teams/") && method === "GET") {
+  // GET TEAM BY ID
+  else if (
+    pathname.startsWith("/api/v1/teams/") &&
+    method === "GET"
+  ) {
     const id = Number(pathname.split("/").pop());
+
     const team = getTeamById(id);
 
-    if (!team)
+    if (!team) {
       return sendJson(res, 400, {
         error: `Team with id: ${id} not found`,
       });
+    }
+
     return sendJson(res, 200, team, "Message", "Team Found");
   }
-  else if(pathname.startsWith("/api/v1/teams/") && method ==="DELETE" )
-  {
+
+  // DELETE TEAM
+  else if (
+    pathname.startsWith("/api/v1/teams/") &&
+    method === "DELETE"
+  ) {
     const id = Number(pathname.split("/").pop());
+
     const team = getTeamById(id);
 
-    if (!team)
+    if (!team) {
       return sendJson(res, 400, {
         error: `Team with id: ${id} not found`,
       });
-      deleteTeam(id)
+    }
 
-    return sendJson(res, 200, team, "Message", "Team deleted");
-  } 
-  else {
-    res.statusCode = 404;
-    res.end("Not matching");
+    deleteTeam(id);
+
+    return sendJson(res, 200, team, "Message", "Team Found");
   }
-  
+
+  // PUT - UPDATE TEAM
+  else if (
+    pathname.startsWith("/api/v1/teams/") &&
+    method === "PUT"
+  ) {
+    const id = Number(pathname.split("/").pop());
+
+    const oldTeam = getTeamById(id);
+
+    if (!oldTeam) {
+      return sendJson(res, 400, {
+        error: `Team with id: ${id} not found`,
+      });
+    }
+
+    let body;
+
+    try {
+      body = await parseJSONBody(req);
+    } catch (error) {
+      return sendJson(res, 400, {
+        error: "Invalid JSON body",
+      });
+    }
+
+    const { tname, tl, members } = body;
+
+    if (!tname || !tl || !members) {
+      return sendJson(res, 400, {
+        error: "Team Name, Team Leader, or Members not defined",
+      });
+    }
+
+    const updateTeam = updateTeamById(id, {
+      tname,
+      tl,
+      members,
+    });
+
+    return sendJson(
+      res,
+      200,
+      updateTeam,
+      "Message",
+      "Team updated successfully"
+    );
+  }
+
+  // INVALID ROUTE
+  else {
+    return sendJson(res, 404, {
+      error: "Not matching",
+    });
+  }
 });
 
 server.listen(PORT, () => {
-  console.log("SIH Server is running at ", PORT);
+  console.log("SIH Server is running at", PORT);
 });
