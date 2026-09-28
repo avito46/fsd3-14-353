@@ -6,6 +6,7 @@ import { log } from "console";
 // Database using file starts
 const FILE = "product.json";
 
+
 const getCart = async () => {
   const data = await readFile(FILE, "utf-8");
   return JSON.parse(data);
