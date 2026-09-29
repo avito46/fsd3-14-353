@@ -1,4 +1,4 @@
-const h1={
+const b1={
   picUrl: "https://m.media-amazon.com/images/I/61aYZnnMaHL._AC_UY327_QL65_.jpg",
   bname:"React design patterns",
   price:1200,
@@ -11,11 +11,11 @@ const h1={
 function Book(){
   return ( 
   <div>
-    <img src="https://m.media-amazon.com/images/I/61aYZnnMaHL._AC_UY327_QL65_.jpg" alt="Design patterns React JS"/>
+    <img src={b1.picUrl} alt={b1.bname}/>
     <h1>Let us react </h1>
-    <h2>Price: 799</h2>
+    <h2>Price: {b1.price}</h2>
     <h3>Rating: 5</h3>
-    <h3>Quanity: 5</h3>
+    <h3>Quantity: {b1.Quantity}</h3>
   </div>
 )
 }
