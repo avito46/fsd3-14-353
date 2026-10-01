@@ -41,4 +41,5 @@ const qtyStyle={
   Then apply that style attrubute and pass the object
 
 c. Inline css -->Written inside the tag which the user wants to customise
-
+3. rfce gives react default function
+4. rafc gives arrow function
