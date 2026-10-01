@@ -22,3 +22,23 @@
 2. It must start with capital letter
 3. It should be treated as html tag
 4. It must be closed
+
+## Object destructor
+1. const {bname,price,Quantity,rating,icUrl}=props.book
+Does not depend on order,if property is not available then it initialises with NULL
+2. Any component including style 
+a. External css -->Create class in index.css and use in component
+b. Internal Css -->Create property as object:
+```
+const qtyStyle={
+    fontSize:"1rem",
+    color:"blue",
+    textAlign:"center",
+    backgroundColor:"yellow",
+    padding:"10px",
+  }
+  ```
+  Then apply that style attrubute and pass the object
+
+c. Inline css -->Written inside the tag which the user wants to customise
+
