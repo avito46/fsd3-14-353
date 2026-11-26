@@ -1,0 +1,323 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Rockstar Games</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* NAVBAR */
+        nav {
+            height: 75px;
+            background: #050505;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 45px;
+            border-bottom: 1px solid #222;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+
+        .logo span {
+            color: #f5c400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover {
+            color: #f5c400;
+        }
+
+        .menu {
+            font-size: 25px;
+        }
+
+        /* HERO */
+        .hero {
+            height: 55vh;
+            background:
+                linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.9)),
+                url("https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1800&q=80")
+                center/cover;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 70px;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .hero p {
+            margin-top: 15px;
+            color: #ccc;
+            font-size: 18px;
+        }
+
+        /* CONTENT */
+        .content {
+            padding: 80px 12%;
+        }
+
+        .content h2 {
+            font-size: 38px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .content h2::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #f5c400;
+            margin-top: 12px;
+        }
+
+        .content p {
+            color: #aaa;
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        /* CARDS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .card {
+            background: #111;
+            padding: 35px;
+            border: 1px solid #222;
+        }
+
+        .card:hover {
+            border-color: #f5c400;
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #050505;
+            padding: 50px;
+            border-top: 1px solid #222;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .footer-links a {
+            color: #888;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            color: #555;
+            font-size: 12px;
+            margin-top: 35px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 800px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 45px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .content {
+                padding: 60px 25px;
+            }
+
+            .footer-top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+
+        <div class="logo">
+            ROCK<span>★</span>STAR
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="enquiry.html">Enquiry</a></li>
+            <li><a href="#">Games</a></li>
+            <li><a href="#">Newswire</a></li>
+        </ul>
+
+        <div class="menu">☰</div>
+
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div>
+            <h1>About Us</h1>
+
+            <p>
+                We create worlds worth getting lost in.
+            </p>
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT CONTENT -->
+    <section class="content">
+
+        <h2>Who We Are</h2>
+
+        <p>
+            Rockstar Games is a game development and publishing studio
+            focused on creating immersive worlds, memorable characters
+            and unforgettable gaming experiences.
+        </p>
+
+        <p>
+            From expansive open-world adventures to online multiplayer
+            experiences, our games are designed to give players the freedom
+            to explore, interact and create their own stories.
+        </p>
+
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Our Vision</h3>
+
+                <p>
+                    To create innovative and immersive gaming experiences
+                    that push the boundaries of interactive entertainment.
+                </p>
+            </div>
+
+
+            <div class="card">
+                <h3>Our Games</h3>
+
+                <p>
+                    Our worlds combine detailed environments, compelling
+                    characters, engaging gameplay and memorable storytelling.
+                </p>
+            </div>
+
+
+            <div class="card">
+                <h3>Our Community</h3>
+
+                <p>
+                    Millions of players around the world make our games
+                    living, evolving experiences.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-top">
+
+            <div class="logo">
+                ROCK<span>★</span>STAR
+            </div>
+
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="enquiry.html">Enquiry</a>
+                <a href="#">Privacy</a>
+                <a href="#">Contact</a>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Rockstar Games. All rights reserved.
+        </div>
+
+    </footer>
+
+</body>
+</html>

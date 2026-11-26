@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Premium product showcase for the Marshall Acton III speaker.">
+<title>Marshall Acton III — Home-Filling Sound</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root{
+  --black:#090909; --charcoal:#151515; --panel:#1d1d1b; --cream:#f2eee4;
+  --muted:#aaa69d; --line:rgba(242,238,228,.14); --brass:#b58b4b; --white:#fff;
+  --max:1240px; --ease:cubic-bezier(.2,.75,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;background:var(--black);color:var(--cream);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%}
+button,input{font:inherit}
+button{cursor:pointer}
+.site-header{position:sticky;top:0;z-index:100;background:rgba(9,9,9,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{height:76px;max-width:var(--max);margin:auto;padding:0 28px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.brand{font-family:"Barlow Condensed",sans-serif;font-weight:800;letter-spacing:.12em;font-size:27px}
+.nav-links{display:flex;gap:30px;justify-content:center;font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:600}
+.nav-links a{opacity:.78;transition:.25s}
+.nav-links a:hover,.nav-actions a:hover{opacity:1;color:#fff}
+.nav-actions{display:flex;justify-content:flex-end;gap:19px;font-size:12px;text-transform:uppercase;letter-spacing:.1em}
+.menu-toggle,.menu-label{display:none}
+.hero{max-width:var(--max);min-height:680px;margin:auto;padding:75px 28px 85px;display:grid;grid-template-columns:.9fr 1.1fr;gap:55px;align-items:center}
+.eyebrow{font-size:11px;letter-spacing:.3em;font-weight:700;color:var(--brass);margin-bottom:18px}
+h1,h2,h3,.display{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;line-height:.9;letter-spacing:.015em}
+.hero h1{font-size:clamp(76px,10vw,145px);max-width:590px}
+.hero h1 span{display:block;color:var(--cream)}
+.hero h1 strong{font-weight:800;color:#fff}
+.hero-copy{max-width:500px;margin:30px 0;color:#b9b5ad;font-size:15px}
+.price{font-family:"Barlow Condensed";font-size:38px;font-weight:700;margin-bottom:24px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{border:1px solid var(--cream);padding:15px 25px;text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:800;transition:.3s var(--ease);display:inline-flex;align-items:center;justify-content:center}
+.btn.primary{background:var(--cream);color:var(--black)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(0,0,0,.35)}
+.btn.primary:hover{background:#fff}
+.hero-visual{position:relative}
+.hero-visual:before{content:"";position:absolute;inset:8% -8% 2%;background:radial-gradient(circle,rgba(181,139,75,.18),transparent 65%);filter:blur(18px)}
+.hero-visual img{position:relative;max-height:600px;object-fit:contain;filter:drop-shadow(0 35px 35px rgba(0,0,0,.65));transition:transform .7s var(--ease)}
+.hero-visual:hover img{transform:scale(1.035) translateY(-5px)}
+.gallery-section{background:var(--cream);color:var(--black);padding:100px 28px}
+.gallery{max-width:var(--max);margin:auto}
+.gallery-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:35px}
+.gallery-head h2{font-size:70px}
+.gallery-head p{max-width:370px;color:#5f5b55;font-size:13px}
+.gallery-radio{position:absolute;opacity:0;pointer-events:none}
+.gallery-main{position:relative;background:#ded9ce;aspect-ratio:16/9;overflow:hidden}
+.gallery-main img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transform:scale(.98);transition:opacity .4s,transform .5s}
+#view1:checked~.gallery-main .v1,#view2:checked~.gallery-main .v2,#view3:checked~.gallery-main .v3,#view4:checked~.gallery-main .v4{opacity:1;transform:scale(1)}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+.thumb{background:#d5d0c6;border:2px solid transparent;aspect-ratio:1.3;overflow:hidden;display:block;cursor:pointer;transition:.25s}
+.thumb img{height:100%;object-fit:cover}
+#view1:checked~.thumbs label[for=view1],#view2:checked~.thumbs label[for=view2],#view3:checked~.thumbs label[for=view3],#view4:checked~.thumbs label[for=view4]{border-color:var(--black);transform:translateY(-3px)}
+.product{max-width:var(--max);margin:auto;padding:110px 28px;display:grid;grid-template-columns:1fr .9fr;gap:80px}
+.info h2{font-size:72px;margin-bottom:16px}
+.rating{display:flex;gap:13px;align-items:center;margin-bottom:25px}
+.stars{letter-spacing:4px;color:var(--brass)}
+.rating span:last-child{font-size:12px;color:var(--muted)}
+.info p{color:#aaa69d;max-width:570px;font-size:14px}
+.spec-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:32px 0}
+.spec{border-top:1px solid var(--line);padding:15px 0;font-size:12px;color:#c6c2b9}
+.spec b{display:block;color:var(--cream);margin-bottom:4px}
+.purchase-card{background:var(--panel);border:1px solid var(--line);padding:30px;align-self:start}
+.purchase-card h3{font-size:34px;margin-bottom:25px}
+.label{font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);margin-bottom:12px}
+.swatches{display:flex;gap:12px;margin-bottom:28px}
+.swatch-input{position:absolute;opacity:0}
+.swatch{width:32px;height:32px;border-radius:50%;border:2px solid transparent;outline:1px solid rgba(255,255,255,.18);outline-offset:3px;cursor:pointer;transition:.2s}
+.black{background:#090909}.sw-cream{background:#e9e2d4}.brown{background:#684536}
+#black:checked+label,#cream:checked+label,#brown:checked+label{border-color:var(--cream);transform:scale(1.15);outline-color:var(--brass)}
+.qty{display:flex;width:150px;height:46px;border:1px solid var(--line);align-items:center;justify-content:space-between;margin-bottom:20px}
+.qty button{border:0;background:transparent;color:var(--cream);width:44px;height:100%;font-size:20px;transition:.2s}
+.qty button:hover{background:#292925}
+.purchase-card .btn{width:100%}
+.features{background:#111;padding:105px 28px}
+.feature-wrap{max-width:var(--max);margin:auto}
+.feature-title{max-width:700px;margin-bottom:55px}
+.feature-title h2{font-size:clamp(65px,8vw,112px)}
+.feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)}
+.feature{background:#111;padding:34px 26px;min-height:250px;border-top:1px solid transparent;transition:.35s var(--ease)}
+.feature:hover{background:#1a1a18;border-top-color:var(--brass);transform:translateY(-5px)}
+.feature-num{font-family:"Barlow Condensed";font-size:16px;color:var(--brass)}
+.feature h3{font-size:29px;margin:55px 0 12px}
+.feature p{font-size:12px;color:#98948c}
+.specs{max-width:var(--max);margin:auto;padding:110px 28px}
+.specs h2{font-size:78px;margin-bottom:45px}
+.table{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:1fr 1fr;padding:20px 0;border-bottom:1px solid var(--line);font-size:13px}
+.row span:first-child{color:var(--muted)}.row span:last-child{font-weight:600}
+.reviews{background:var(--cream);color:var(--black);padding:105px 28px}
+.review-wrap{max-width:var(--max);margin:auto}
+.review-top{display:flex;justify-content:space-between;align-items:end;margin-bottom:50px}
+.review-top h2{font-size:80px}.big-rating{font-family:"Barlow Condensed";font-size:55px;font-weight:800;text-align:right}.big-rating small{display:block;font:11px Inter;color:#666;letter-spacing:.14em}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.review{background:#e4ded2;padding:30px;min-height:220px;transition:.3s}
+.review:hover{transform:translateY(-7px)}
+.review .stars{display:block;margin-bottom:25px}.review h3{font-size:23px;margin-bottom:9px}.review p{font-size:13px;color:#555}
+.lifestyle{min-height:650px;position:relative;background:#111 url("https://static.ticimax.cloud/55525/uploads/urunresimleri/buyuk/de0afc6a-25a5-4fac-b687-84739b193e45-7576-4.jpg") center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.lifestyle:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.32),rgba(0,0,0,.75))}
+.lifestyle-content{position:relative;max-width:800px;padding:40px}
+.lifestyle h2{font-size:clamp(65px,9vw,120px)}.lifestyle p{max-width:520px;margin:25px auto;color:#c0bcb4;font-size:14px}
+footer{padding:65px 28px 35px;background:#070707;border-top:1px solid var(--line)}
+.footer{max-width:var(--max);margin:auto}.footer-top{display:flex;justify-content:space-between;gap:30px;padding-bottom:55px}.footer-brand{font-family:"Barlow Condensed";font-size:48px;font-weight:800;letter-spacing:.12em}.footer-links{display:grid;grid-template-columns:repeat(3,auto);gap:15px 55px;font-size:11px;text-transform:uppercase;letter-spacing:.12em}.footer-links a{color:#aaa;transition:.2s}.footer-links a:hover{color:#fff}.copyright{border-top:1px solid var(--line);padding-top:20px;color:#666;font-size:10px;letter-spacing:.08em}
+@media(max-width:900px){
+ .nav{grid-template-columns:1fr auto;height:68px}.nav-links{display:none}.nav-actions a:not(.cart){display:none}.menu-label{display:block;font-size:22px;cursor:pointer}.menu-toggle:checked~.mobile-menu{display:flex}
+ .mobile-menu{display:none;position:absolute;top:68px;left:0;right:0;background:#101010;border-bottom:1px solid var(--line);flex-direction:column;padding:20px 28px;gap:17px;text-transform:uppercase;font-size:12px;letter-spacing:.12em}
+ .hero{grid-template-columns:1fr;min-height:auto;padding-top:55px}.hero-visual{order:-1}.hero-visual img{max-height:430px}.product{grid-template-columns:1fr;gap:45px}.feature-grid{grid-template-columns:1fr 1fr}.review-grid{grid-template-columns:1fr}.review-top{align-items:start;gap:25px}.review-top h2{font-size:65px}.big-rating{font-size:40px}
+}
+@media(max-width:600px){
+ .nav{padding:0 18px}.hero,.product,.specs,.gallery-section,.features,.reviews{padding-left:18px;padding-right:18px}
+ .hero{padding-top:35px;padding-bottom:65px;gap:25px}.hero h1{font-size:70px}.hero-copy{font-size:13px}.price{font-size:32px}
+ .gallery-section,.features,.specs,.reviews{padding-top:70px;padding-bottom:70px}.gallery-head{display:block}.gallery-head h2,.info h2,.specs h2{font-size:55px;margin-bottom:20px}.gallery-head p{font-size:12px}
+ .thumbs{gap:7px}.feature-grid{grid-template-columns:1fr}.feature{min-height:210px}.feature h3{margin-top:40px}
+ .spec-list{grid-template-columns:1fr}.row{grid-template-columns:1fr;gap:5px}
+ .review-top{display:block}.big-rating{text-align:left;margin-top:20px}.lifestyle{min-height:560px}.lifestyle-content{padding:25px}.lifestyle h2{font-size:66px}
+ .footer-top{display:block}.footer-links{grid-template-columns:1fr 1fr;margin-top:35px;gap:14px 25px}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="site-header">
+<nav class="nav" aria-label="Primary navigation">
+  <a class="brand" href="/">MARSHALL</a>
+  <div class="nav-links"><a href="/">Home</a><a href="/product">Speakers</a><a href="/product">Headphones</a><a href="/product#specs">Accessories</a><a href="/about">About</a></div>
+  <div class="nav-actions"><a href="/product#gallery">Search</a><a class="cart" href="/product#purchase">Cart (0)</a><label class="menu-label" for="menu">☰</label></div>
+  <input class="menu-toggle" id="menu" type="checkbox" aria-label="Toggle menu">
+  <div class="mobile-menu"><a href="/">Home</a><a href="/product">Speakers</a><a href="/product">Headphones</a><a href="/product#specs">Accessories</a><a href="/about">About</a><a href="/product#gallery">Search</a><a href="/product#purchase">Cart</a></div>
+</nav>
+</header>
+
+<main>
+<section class="hero" id="product">
+  <div>
+    <div class="eyebrow">HOME LINE III / BLACK</div>
+    <h1><span>ACTON</span><strong>III</strong></h1>
+    <div class="display" style="font-size:clamp(28px,3vw,43px);margin-top:18px">HOME-FILLING SOUND.</div>
+    <p class="hero-copy">A compact speaker delivering powerful, room-filling sound with Marshall's unmistakable iconic design.</p>
+    <div class="price">$299.99</div>
+    <div class="actions"><a class="btn primary" href="/product#purchase">Add to cart</a><a class="btn" href="/product#purchase">Buy now</a></div>
+  </div>
+  <div class="hero-visual">
+    <img src="https://s3.us-east-1.amazonaws.com/product-image-bucket-nz-prod-us/428951-Product-0-I-638917023344247148.jpg" alt="Black Marshall Acton III home speaker, front view">
+  </div>
+</section>
+
+<section class="gallery-section" id="gallery">
+<div class="gallery">
+  <div class="gallery-head"><h2>THE ICON.</h2><p>Real product photography of the Acton III. Select a view to explore the details.</p></div>
+  <input class="gallery-radio" type="radio" name="view" id="view1" checked>
+  <input class="gallery-radio" type="radio" name="view" id="view2">
+  <input class="gallery-radio" type="radio" name="view" id="view3">
+  <input class="gallery-radio" type="radio" name="view" id="view4">
+  <div class="gallery-main">
+    <img class="v1" src="https://s3.us-east-1.amazonaws.com/product-image-bucket-nz-prod-us/428951-Product-0-I-638917023344247148.jpg" alt="Marshall Acton III black speaker front product view">
+    <img class="v2" src="https://static.ticimax.cloud/55525/uploads/urunresimleri/buyuk/de0afc6a-25a5-4fac-b687-84739b193e45-7576-4.jpg" alt="Marshall Acton III black speaker angled view">
+    <img class="v3" src="https://img.pccomponentes.com/articles/1079/10793055/4626-marshall-acton-iii-altavoz-bluetooth-negro-especificaciones.jpg" alt="Marshall Acton III black speaker detail view">
+    <img class="v4" src="https://bizweb.dktcdn.net/100/451/485/files/marshall-acton-3-12.jpg?v=1690367567958" alt="Marshall Acton III black speaker lifestyle product view">
+  </div>
+  <div class="thumbs">
+    <label class="thumb" for="view1"><img src="https://s3.us-east-1.amazonaws.com/product-image-bucket-nz-prod-us/428951-Product-0-I-638917023344247148.jpg" alt="Select front view"></label>
+    <label class="thumb" for="view2"><img src="https://static.ticimax.cloud/55525/uploads/urunresimleri/buyuk/de0afc6a-25a5-4fac-b687-84739b193e45-7576-4.jpg" alt="Select angled view"></label>
+    <label class="thumb" for="view3"><img src="https://img.pccomponentes.com/articles/1079/10793055/4626-marshall-acton-iii-altavoz-bluetooth-negro-especificaciones.jpg" alt="Select detail view"></label>
+    <label class="thumb" for="view4"><img src="https://bizweb.dktcdn.net/100/451/485/files/marshall-acton-3-12.jpg?v=1690367567958" alt="Select lifestyle view"></label>
+  </div>
+</div>
+</section>
+
+<section class="product" id="purchase">
+  <article class="info">
+    <div class="eyebrow">ACTON III / DETAILS</div>
+    <h2>COMPACT.<br>COMMANDING.</h2>
+    <div class="rating"><span class="stars">★★★★★</span><strong>4.8 / 5</strong><span>1,245 Reviews</span></div>
+    <p>A compact yet powerful home speaker combining contemporary technology with Marshall's signature design language. Acton III features Bluetooth 5.2, a wider stereo soundstage and analogue controls on the speaker.</p>
+    <div class="spec-list">
+      <div class="spec"><b>Bluetooth 5.2</b>Next-generation wireless connectivity</div>
+      <div class="spec"><b>Stereo sound</b>Re-engineered wider soundstage</div>
+      <div class="spec"><b>3.5mm input</b>Wired listening option</div>
+      <div class="spec"><b>Dynamic Loudness</b>Balanced sound at every volume</div>
+      <div class="spec"><b>App support</b>Marshall Bluetooth app</div>
+      <div class="spec"><b>Premium build</b>Signature Marshall construction</div>
+    </div>
+  </article>
+  <aside class="purchase-card">
+    <h3>MAKE IT YOURS.</h3>
+    <div class="label">Colour</div>
+    <div class="swatches">
+      <input class="swatch-input" type="radio" name="colour" id="black" checked><label class="swatch black" for="black" title="Black"></label>
+      <input class="swatch-input" type="radio" name="colour" id="cream"><label class="swatch sw-cream" for="cream" title="Cream"></label>
+      <input class="swatch-input" type="radio" name="colour" id="brown"><label class="swatch brown" for="brown" title="Brown"></label>
+    </div>
+    <div class="label">Quantity</div>
+    <div class="qty"><button type="button" aria-label="Decrease quantity">−</button><span>1</span><button type="button" aria-label="Increase quantity">+</button></div>
+    <a class="btn primary" href="/contact">Add to bag — $299.99</a>
+  </aside>
+</section>
+
+<section class="features" id="features">
+<div class="feature-wrap">
+  <div class="feature-title"><div class="eyebrow">THE MARSHALL STANDARD</div><h2>BUILT FOR SOUND.<br>DESIGNED FOR LIFE.</h2></div>
+  <div class="feature-grid">
+    <article class="feature"><span class="feature-num">01</span><h3>Iconic Design</h3><p>Signature Marshall styling with classic grille cloth, brass detailing and the iconic script logo.</p></article>
+    <article class="feature"><span class="feature-num">02</span><h3>Room-Filling Sound</h3><p>Powerful audio engineered to deliver a wider, immersive stereo soundstage.</p></article>
+    <article class="feature"><span class="feature-num">03</span><h3>Wireless Freedom</h3><p>Bluetooth 5.2 connectivity for effortless listening, with a 3.5mm input when you want wired control.</p></article>
+    <article class="feature"><span class="feature-num">04</span><h3>Built To Last</h3><p>Premium materials and durable construction shaped by decades of Marshall design language.</p></article>
+  </div>
+</div>
+</section>
+
+<section class="specs" id="specs">
+  <div class="eyebrow">TECHNICAL DETAILS</div><h2>SPECIFICATIONS.</h2>
+  <div class="table">
+    <div class="row"><span>Model</span><span>Acton III</span></div>
+    <div class="row"><span>Connectivity</span><span>Bluetooth 5.2</span></div>
+    <div class="row"><span>Input</span><span>3.5mm</span></div>
+    <div class="row"><span>Audio</span><span>Stereo</span></div>
+    <div class="row"><span>Finish</span><span>Vinyl</span></div>
+    <div class="row"><span>Weight</span><span>2.85 kg / 6.28 lb</span></div>
+    <div class="row"><span>Dimensions</span><span>260 × 170 × 150 mm</span></div>
+    <div class="row"><span>Amplification</span><span>1 × 30W woofer + 2 × 15W tweeters, Class D</span></div>
+  </div>
+</section>
+
+<section class="reviews">
+<div class="review-wrap">
+  <div class="review-top"><div><div class="eyebrow" style="color:#7b5a2f">LISTENER NOTES</div><h2>THE REVIEWS.</h2></div><div class="big-rating">4.8 ★★★★★<small>BASED ON 1,245 REVIEWS</small></div></div>
+  <div class="review-grid">
+    <article class="review"><span class="stars">★★★★★</span><h3>Rahul Sharma</h3><p>“Beautiful design and surprisingly powerful sound.”</p></article>
+    <article class="review"><span class="stars">★★★★★</span><h3>Ananya Verma</h3><p>“The Marshall styling looks incredible in my living room.”</p></article>
+    <article class="review"><span class="stars">★★★★☆</span><h3>Arjun Mehta</h3><p>“Excellent sound quality and premium build.”</p></article>
+  </div>
+</div>
+</section>
+
+<section class="lifestyle" id="about">
+  <div class="lifestyle-content"><div class="eyebrow">SIGNATURE SOUND / SIGNATURE STYLE</div><h2>SOUND THAT<br>MAKES A STATEMENT.</h2><p>Acton III brings Marshall's unmistakable design and room-filling home sound into a compact form made to live beautifully in your space.</p><a class="btn" href="/product">Explore Acton III</a></div>
+</section>
+</main>
+
+<footer id="footer">
+<div class="footer">
+  <div class="footer-top"><div class="footer-brand">MARSHALL</div><div class="footer-links"><a href="/product">Speakers</a><a href="/product">Headphones</a><a href="/product#specs">Accessories</a><a href="/about">Support</a><a href="/about">About Marshall</a><a href="mailto:contact@example.com">Contact</a></div></div>
+  <div class="copyright">© 2026 Marshall Speaker Store · Independent product showcase. Not an official Marshall website.</div>
+</div>
+</footer>
+</body>
+</html>

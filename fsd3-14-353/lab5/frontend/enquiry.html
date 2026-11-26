@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquiry | Rockstar Games</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* NAVBAR */
+        nav {
+            height: 75px;
+            background: #050505;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 45px;
+            border-bottom: 1px solid #222;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+
+        .logo span {
+            color: #f5c400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover {
+            color: #f5c400;
+        }
+
+        .menu {
+            font-size: 25px;
+        }
+
+        /* PAGE HEADER */
+        .header {
+            height: 40vh;
+
+            background:
+                linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)),
+                url("https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=1800&q=80")
+                center/cover;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 65px;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .header p {
+            margin-top: 12px;
+            color: #bbb;
+            font-size: 17px;
+        }
+
+        /* FORM AREA */
+        .form-section {
+            padding: 80px 15%;
+        }
+
+        .form-section h2 {
+            font-size: 38px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .form-section > p {
+            color: #999;
+            margin-bottom: 40px;
+        }
+
+        form {
+            background: #111;
+            border: 1px solid #222;
+            padding: 40px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            background: #050505;
+            border: 1px solid #333;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #f5c400;
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        option {
+            background: #111;
+        }
+
+        .submit-btn {
+            background: #f5c400;
+            color: #000;
+            border: none;
+            padding: 16px 35px;
+            font-size: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: white;
+        }
+
+        /* CONTACT INFO */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .contact-box {
+            background: #111;
+            border: 1px solid #222;
+            padding: 30px;
+        }
+
+        .contact-box h3 {
+            color: #f5c400;
+            margin-bottom: 12px;
+        }
+
+        .contact-box p {
+            color: #999;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #050505;
+            padding: 50px;
+            border-top: 1px solid #222;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .footer-links a {
+            color: #888;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            color: #555;
+            font-size: 12px;
+            margin-top: 35px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 800px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .header h1 {
+                font-size: 45px;
+            }
+
+            .form-section {
+                padding: 60px 25px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            form {
+                padding: 25px;
+            }
+
+            .footer-top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+
+        <div class="logo">
+            ROCK<span>★</span>STAR
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="enquiry.html">Enquiry</a></li>
+            <li><a href="#">Games</a></li>
+            <li><a href="#">Newswire</a></li>
+        </ul>
+
+        <div class="menu">☰</div>
+
+    </nav>
+
+
+    <!-- HEADER -->
+    <section class="header">
+
+        <div>
+            <h1>Enquiry</h1>
+
+            <p>
+                Have a question? Get in touch with us.
+            </p>
+        </div>
+
+    </section>
+
+
+    <!-- FORM -->
+    <section class="form-section">
+
+        <h2>Send An Enquiry</h2>
+
+        <p>
+            Fill out the form below and submit your enquiry.
+        </p>
+
+
+        <form action="#" method="post">
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your name"
+                        required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required>
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="Enter your phone number">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="subject">Enquiry Type</label>
+
+                    <select id="subject" name="subject" required>
+
+                        <option value="">Select an option</option>
+                        <option value="game">Game Information</option>
+                        <option value="support">Technical Support</option>
+                        <option value="business">Business Enquiry</option>
+                        <option value="career">Career Enquiry</option>
+                        <option value="other">Other</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="message">Your Message</label>
+
+                <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Write your enquiry here..."
+                    required></textarea>
+
+            </div>
+
+
+            <button type="submit" class="submit-btn">
+                Submit Enquiry
+            </button>
+
+        </form>
+
+
+        <!-- CONTACT INFORMATION -->
+        <div class="contact-info">
+
+            <div class="contact-box">
+                <h3>General Enquiries</h3>
+
+                <p>
+                    For general questions and information,
+                    submit the enquiry form above.
+                </p>
+            </div>
+
+
+            <div class="contact-box">
+                <h3>Game Support</h3>
+
+                <p>
+                    Need assistance with a game?
+                    Select "Technical Support" in the form.
+                </p>
+            </div>
+
+
+            <div class="contact-box">
+                <h3>Business</h3>
+
+                <p>
+                    For business-related enquiries,
+                    select "Business Enquiry".
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-top">
+
+            <div class="logo">
+                ROCK<span>★</span>STAR
+            </div>
+
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="enquiry.html">Enquiry</a>
+                <a href="#">Privacy</a>
+                <a href="#">Contact</a>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Rockstar Games. All rights reserved.
+        </div>
+
+    </footer>
+
+</body>
+</html>
